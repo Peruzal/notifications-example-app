@@ -3,9 +3,12 @@ package com.example.notificationsapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.RemoteInput;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -64,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 setContentTitle(title).
                 setContentText(message).
                 setAutoCancel(true);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this, 23, new Intent(this, NotificationActionActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.addAction(R.drawable.ic_android_black_24dp, "OPEN", pendingIntent);
 
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nm.notify(0, builder.build());
