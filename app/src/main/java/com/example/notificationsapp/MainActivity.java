@@ -1,8 +1,12 @@
 package com.example.notificationsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        createNotificationChannel("Normal Notifications", CHANNEL_ID_1, "Simple notification");
+        createNotificationChannel("Picture Notifications", CHANNEL_ID_2, "Notifications which displays an image");
+
     }
 
     private void displayNotification() {
@@ -47,21 +54,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // TODO - Display notification type
+        displaySimpleNotification(title, message);
 
     }
 
-    private void displayNormalNotification(String title, String message) {
-        // TODO - Create and show normal text notification
+    private void displaySimpleNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_1).
+                setSmallIcon(R.drawable.ic_android_black_24dp).
+                setContentTitle(title).
+                setContentText(message).
+                setAutoCancel(true);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel1 = new NotificationChannel()
-        }
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(0, builder.build());
 
     }
 
     private void displayBigPictureNotification(String tile, String message) {
         // TODO - Create and show picture notification
 
+    }
+
+    private void createNotificationChannel(String name, String id, String description) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            channel.setLightColor(Color.BLUE);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }
