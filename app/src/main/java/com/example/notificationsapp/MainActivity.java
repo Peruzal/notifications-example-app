@@ -1,28 +1,16 @@
 package com.example.notificationsapp;
 
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 
 public class MainActivity extends AppCompatActivity {
     public static final String CHANNEL_ID_1 = "notification_channel_1";
@@ -64,12 +52,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // TODO - Display notification type
-//        displaySimpleNotification(title, message);
 
-        title = getResources().getString(R.string.notification_title);
-        message = getResources().getString(R.string.notification_text);
-
-        displayBigPictureNotification(title, message);
 
     }
 
@@ -90,43 +73,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayBigPictureNotification(String title, String message) {
-        // TODO - Create and show picture notification
 
-        final NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
-        bigPictureStyle.setBigContentTitle(title);
-        bigPictureStyle.setSummaryText(message);
+        // TODO - Create BigPicture notification style
 
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_2);
-        builder.setContentTitle(title)
-                .setSmallIcon(R.drawable.ic_android_black_24dp)
-                .setStyle(bigPictureStyle);
 
-        Glide.with(this).asBitmap().load(R.drawable.table_mountain_hike).listener(new RequestListener<Bitmap>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                return false;
-            }
+        // TODO - Build notification and set the notification style
 
-            @Override
-            public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                bigPictureStyle.bigPicture(resource);
-                NotificationManagerCompat.from(MainActivity.this).notify(1, builder.build());
-                return true;
-            }
-        }).submit(400, 200);
+
+        // TODO - Display notification using the NotificationManager
+
+
     }
 
     private void createNotificationChannel(String name, String id, String description) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_DEFAULT);
-            channel.enableLights(true);
-            channel.enableVibration(true);
-            channel.setLightColor(Color.BLUE);
-            channel.setDescription(description);
+        // TODO - Create notification channel
 
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
     }
 
 }
