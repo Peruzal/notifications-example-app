@@ -57,18 +57,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displaySimpleNotification(String title, String message) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID_1).
-                setSmallIcon(R.drawable.ic_android_black_24dp).
-                setContentTitle(title).
-                setContentText(message).
-                setAutoCancel(true);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 23, new Intent(this, NotificationActionActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.addAction(R.drawable.ic_android_black_24dp, "OPEN", pendingIntent);
+        // TODO- Build notification
 
-        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.notify(0, builder.build());
+
+
+
+        // TODO -  Get reference to the NotificationManager and display notification
+
 
     }
 
