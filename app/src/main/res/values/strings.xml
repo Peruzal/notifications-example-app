@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NotificationsApp</string>
+    <string name="notification_text">Table Mountian is a treasure trove of wild and wonderful walks. In fact, you could do a differernt hike on it every week of the year. If you’re bored of Newlands Ravine why not try Knife Edge?</string>
+    <string name="notification_title">Hike Knife Edge, Table Mountain</string>
 </resources>
